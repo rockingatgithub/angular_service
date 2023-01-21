@@ -1,0 +1,37 @@
+<form #frm="ngForm" (ngSubmit)="addFoodToList(frm)" >
+
+    <label for="name" >
+        Name:-
+    </label>
+    <input id="name" type="text" name="name" ngModel required />
+
+    <label for="price" >
+        Price:-
+    </label>
+    <input id="price" type="text" name="price" ngModel required />
+
+    <label for="rating" >
+        Rating:-
+    </label>
+    <input id="rating" type="text" name="rating" ngModel required />
+
+    <button *ngIf="!isUpdateForm" type="submit" [disabled]="frm.invalid " > Submit </button>
+
+</form>
+
+<ul>
+
+    <li *ngFor="let food of foodList" >
+
+        <span>Name:- {{food.name}}&nbsp;&nbsp;</span>
+        <span>Price:- {{food.price}}&nbsp;&nbsp;</span>
+        <span>Rating:- {{food.rating}}&nbsp;&nbsp;</span>
+        <br/>
+        <button (click)="toggleForm()"  > Enbale Update </button>
+        <button (click)="updateFoodFromList(frm.value, food.name)" > Update </button>
+        <button (click)="deleteFoodFromList(food.name)" > Delete </button>
+
+
+    </li>
+
+</ul>
